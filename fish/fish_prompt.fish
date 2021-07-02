@@ -1,7 +1,7 @@
 function fish_prompt
 	test $SSH_TTY; and printf (set_color red)(whoami)(set_color white)'@'(set_color yellow)(hostname)' '
-	if not set -q __git_cb
-        set __git_cb ":"(git branch ^/dev/null | grep \* | sed 's/* //')(set_color normal)""
+	if test -d .git && not set -q __git_cb
+        set __git_cb ":"(git branch | grep \* | sed 's/* //')(set_color normal)""
 	end
 
     test $USER = 'root'; and echo (set_color red)"#"
